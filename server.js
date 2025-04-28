@@ -1,7 +1,6 @@
-require('dotenv').config();
-// if (process.env.NODE_ENV !== 'production') {
-//     require('dotenv').config();
-// }
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
 // here if we are not in production environment, the above line of code import what is in .env file,
 // then in the code below somewhere, process.env.DATABASE_URL will have that URL imported. 
 
@@ -31,9 +30,7 @@ app.use(express.static('public'))
 // tell our express where our public file is going to be. Public files are files such as style sheets, javascript, all of the images.   
 
 const mongoose = require('mongoose')
-// after run 'npm install mongoose' in the terminal, we are now importing it from the library.
-// mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
-mongoose.connect(process.env.DATABASE_URL)
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
 const db = mongoose.connection
 db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Mongoose'))
