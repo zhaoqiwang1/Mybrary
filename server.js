@@ -12,6 +12,13 @@ const expressLayouts = require('express-ejs-layouts')
 const indexRouter = require('./routes/index')
 // the above code is to let our server know that we've created a route for index, for '/'. So, we need to import it here to make sure it works. 
 
+const authorRouter = require('./routes/authors')
+// After we've created author.js (our routers for authors) in routes folder, and after we've created the corresponding authors folder and the .ejs files in views, now we can create the corresponding authorRouter here.
+
+
+
+
+
 /*
 app.set() is a method used to set application settings and configuration variables. app.set(name, value): name: A string representing the name of the setting you want to set.
 value: The value you want to assign to the setting.
@@ -38,8 +45,12 @@ db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Mongoose'))
 
 
-
 app.use('/', indexRouter)
+app.use('/authors', authorRouter)
+
+
+
+
 
 app.listen(process.env.PORT || 3000)
 /*
