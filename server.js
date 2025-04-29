@@ -8,6 +8,10 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
+const bodyParser = require('body-parser') // after npm i body-parser, now require this body-parser library.
+
+
+
 
 const indexRouter = require('./routes/index')
 // the above code is to let our server know that we've created a route for index, for '/'. So, we need to import it here to make sure it works. 
@@ -36,6 +40,10 @@ app.set('layout', 'layouts/layout')
 app.use(expressLayouts) // tell our express application that we want to use express layouts. 
 app.use(express.static('public')) 
 // tell our express where our public file is going to be. Public files are files such as style sheets, javascript, all of the images.   
+
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
+// after require our body-parser library, we need to use app.use() to let our express to be able to use it.
+
 
 const mongoose = require('mongoose')
 // mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
